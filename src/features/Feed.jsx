@@ -35,7 +35,7 @@ function Feed() {
     }, [])
 
     useEffect(() => {
-      const postQuery = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
+      const postQuery = query(collection(db, 'comments'), orderBy('timestamp', 'asc'));
 
       const unsub = onSnapshot(postQuery, (snapshot) => {
         setCom(
