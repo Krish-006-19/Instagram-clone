@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import SignIn from './features/SignIn'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase'
-import { login, logout } from './Redux/userslice'
+import { login, logout } from './Redux/userSlice'
 
 function App() {
   const user = useSelector(state => state.user.user)
