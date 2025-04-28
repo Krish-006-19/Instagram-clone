@@ -9,6 +9,7 @@ function App1() {
       <Routes>
         <Route path='/' element={<Navigate to='/Insta-clone'/>}/>
         <Route path='/Insta-clone' element={<App/>}/>
+        <Route path='/Insta-clone/' element={<App/>}/>
         <Route path='/Insta-clone/signup' element={<SignUp/>}/>
       </Routes>
       </BrowserRouter>
