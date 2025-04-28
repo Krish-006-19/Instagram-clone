@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/Insta-clone/*"
+  to = "/Insta-clone/index.html"
+  status = 200
+  force = true
