@@ -2,7 +2,7 @@ import { Avatar } from "@mui/material";
 import { signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../firebase";
-import { logout } from "../Redux/userslice";
+import { logout } from "../Redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import { useBoolean } from "../Context/BoolContext";
 

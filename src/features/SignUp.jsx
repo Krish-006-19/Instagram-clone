@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from '
 import { auth, provider } from '../firebase'
 import { useDispatch } from 'react-redux'
 import { useBoolean } from '../Context/BoolContext'
-import { login } from '../Redux/userslice'
+import { login } from '../Redux/userSlice'
 
 function SignUp() {
   const [email, setEmail] = useState('')
