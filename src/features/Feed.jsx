@@ -86,7 +86,7 @@ function Feed() {
     }
     
 
-    const undo =()=>{
+    const undo =()=> {
       setSelectedImage(null)
       setInput('')
     }
@@ -94,7 +94,7 @@ function Feed() {
     const addComment = async(e,postId) => {
       e.preventDefault()
       try{
-        if(inp2 && user.imgurl)
+        if( inp2 )
         await addDoc(collection(db,'comments'),{
           profileURL: user.imgurl,
           name: user.name,
@@ -120,7 +120,7 @@ function Feed() {
     <div className="w-6/4">
       <div className="flex justify-between">
         <div className="flex items-center hover:cursor-pointer">
-          <Avatar src={post.data.avatar}/>
+          <Avatar src={post.data.avatar || ''}/>
           <b>
             <p className="text-xs mr-1 ml-1">{post.data.name}</p>
           </b>
@@ -165,7 +165,7 @@ function Feed() {
 
  {   index === Index && (<div className='w-3/2 mt-10'>
       <div className="flex items-center gap-2 mb-2">
-        <Avatar src={post.data.avatar} sx={{ width: "30px", height: "30px" }} />
+        <Avatar src={post.data.avatar || ''} sx={{ width: "30px", height: "30px" }} />
         <div className="font-semibold text-xs">{post.data.name }</div>
       </div>
       <div>
@@ -173,7 +173,7 @@ function Feed() {
       {com?.filter(comment=>comment.data.postid == post.id).map((comment,index)=>(
         <div key={`${index}` + comment}>
         <div className='flex gap-1 items-center'>
-        <Avatar src={comment.data.profileURL} sx={{width:'30px',height:'30px'}}/>
+        <Avatar src={comment.data.profileURL || ''} sx={{width:'30px',height:'30px'}}/>
         <p className="text-xs font-bold">{comment.data.name}</p>
         <p className='text-xs mt-2 mb-2'>{comment.data.message}</p>
         </div>
@@ -181,23 +181,25 @@ function Feed() {
       ))}
 
       </div>
-      <form>
-      <div className="flex items-center gap-2">
-        <input
+      <form onSubmit={(e) => e.preventDefault()}>
+        <div className="flex">
+      <input
           type="text"
           onChange={(e)=>setInp2(e.target.value)}
           value={inp2}
           placeholder="Comment..."
           className=" rounded outline-0 text-xs px-2 py-1 w-full"
         />
-        <button 
-        type='submit'
-        onMouseDown = {(e)=>{addComment(e,post.id)}}
-        className=" text-blue-500 px-3 py-1 rounded text-sm">
-          Post
-        </button>
-      </div>
-      </form>
+  <button
+    type="submit" 
+    onMouseDown={(e)=>{addComment(e,post.id)}}
+    className="text-blue-500 px-3 py-1 rounded text-sm"
+  >
+    Post
+  </button>
+  </div>
+</form>
+
     </div>)}
   </div>
 ))}
