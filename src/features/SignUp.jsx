@@ -28,12 +28,11 @@ function SignUp() {
             console.log(user.photoURL)
           if (user.displayName && user.email) {
           setAvatar(user.photoURL)
-              const userData = {
-                  name: user.displayName,
-                  imgurl: user.photoURL,
-                  email: user.email
-              }
-              dispatch(login(userData))
+              dispatch(login({
+                name: user.displayName,
+                imgurl: user.photoURL,
+                email: user.email
+              }))
           }
           navigate('/Insta-clone')
       } catch (err) {
