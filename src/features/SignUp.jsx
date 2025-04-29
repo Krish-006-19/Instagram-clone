@@ -44,14 +44,14 @@ function SignUp() {
     const loginbyGitHub = async()=>{
           try{
             const {user} = await signInWithPopup(auth, provider)
-            const userOBJ = {
-              name: user.displayName,
+              
+            
+            dispatch(login(
+             { name: user.displayName,
               imgurl: user.photoURL,
               email: user.email,
-              photoURL: user.photoURL
-            }
-            localStorage.setItem('userOBJ',JSON.stringify(userOBJ))
-            dispatch(login(userOBJ))
+              photoURL: user.photoURL}
+            ))
             setAvatar(user.photoURL)
             navigate('/Insta-clone')
           }catch(err){

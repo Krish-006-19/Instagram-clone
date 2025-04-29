@@ -3,7 +3,7 @@ import logo from '../images/instagramlogo.png'
 import { useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { auth, provider } from '../firebase'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { login } from '../Redux/userSlice'
 
 function SignIn() {
@@ -11,7 +11,6 @@ function SignIn() {
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const userst = useSelector(state=>state.user.user)
 
     const Login = async (e) => {
         e.preventDefault()
