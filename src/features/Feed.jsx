@@ -64,8 +64,8 @@ function Feed() {
     }}
 
     const postBtn = async (e) => {
-      e.preventDefault();
-      setIndex(-1);
+      e.preventDefault()
+      setIndex(-1)
     
       if (!input) return; 
     
@@ -87,7 +87,6 @@ function Feed() {
       }
     }
     
-
     const undo =()=> {
       setSelectedImage(null)
       setInput('')
