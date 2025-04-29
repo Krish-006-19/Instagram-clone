@@ -17,7 +17,10 @@ function Feed() {
   const [com, setCom] = useState([])
   const [inp2, setInp2] = useState('')
   const [index, setIndex] = useState(-1)
-    const { setSelectedImage, selectedImage, input, setInput, setLikes } = useBoolean()
+  const [likes, setLikes] = useState(0)
+  const [input, setInput] = useState('')
+
+    const { setSelectedImage, selectedImage } = useBoolean()
     const user = useSelector(state=>state.user.user)
 
     useEffect(() => {
@@ -48,14 +51,15 @@ function Feed() {
       return () => unsub()
     }, [])
 
-    const deletePost = async (postId,emaildata) => {
+    const deletePost = async (postId, emaildata) => {
       setIndex(-1)
       if (user.email === emaildata) 
         await deleteDoc(doc(db, 'posts', postId))
     }
 
-    const like = async( postId ) => {
+    const like = async( postId, emaildata ) => {
       try{
+        if(user.email !== emaildata)
         await updateDoc(doc(db,'posts',postId), {
         likes: increment(1),
       })
@@ -67,7 +71,7 @@ function Feed() {
       e.preventDefault()
       setIndex(-1)
     
-      if (!input) return; 
+      if (!input) return
     
       try {
         await addDoc(collection(db, 'posts'), {
@@ -129,7 +133,7 @@ function Feed() {
         <div className='flex items-center'>
           <button
             className={`text-red-600 text-xs hover:cursor-pointer ${user.email === post.data.email?'hover:cursor-pointer':'hidden'}`}
-            onClick={() => deletePost(post.id,post.data.email)}
+            onClick={() => deletePost(post.id, post.data.email)}
           >Delete</button>
         </div>
       </div>
@@ -140,7 +144,7 @@ function Feed() {
 
       <div className="flex justify-between hover:cursor-pointer">
         <div className="flex gap-2">
-          <div onClick={() => like(post.id)}>
+          <div onClick={() => like(post.id, post.data.email)}>
             <IconButton sx={{ border: "black", borderRadius: "1000000px" }}>
               <FavoriteBorderIcon />
             </IconButton>

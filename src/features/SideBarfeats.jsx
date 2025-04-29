@@ -4,13 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../firebase";
 import { logout } from "../Redux/userSlice";
 import { useNavigate } from "react-router-dom";
-import { useBoolean } from "../Context/BoolContext";
 
 export default function SideBarfeats({ Icon, func, onClick = () => {} }) {
   const user = useSelector(state => state.user.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { setAvatar } = useBoolean()
   const out = async () => {
     try {
       await signOut(auth)

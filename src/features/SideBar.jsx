@@ -17,12 +17,12 @@ const imagekit = new ImageKit({
   privateKey:'private_7tMXhd/7Ojr7TjmgO+pQmE1oDmA=',
   urlEndpoint: "https://ik.imagekit.io/me2eruhxz",
   authenticationEndpoint: ""
-});
+})
 
 
 function SideBar() {
   const fileInputRef = useRef(null)
-  const { setSelectedImage, avatar, setAvatar} = useBoolean()
+  const { setSelectedImage } = useBoolean()
   const handleFileUpload = () => fileInputRef.current.click() 
 
   const onFileChange = async(e) => {
@@ -49,7 +49,6 @@ function SideBar() {
 
         </div>
 
-        {/* Hidden File Input */}
         <input
           type="file"
           accept="image/*"

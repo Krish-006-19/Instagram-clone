@@ -33,7 +33,7 @@ function SignIn() {
     const loginbyGitHub = async()=>{
           try{
             const { user } = await signInWithPopup(auth, provider)
-            console.log(user)
+            
             dispatch(login({
               name: user.displayName,
               imgurl: user.photoURL,

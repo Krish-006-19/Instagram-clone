@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth'
 import { auth, provider } from '../firebase'
 import { useDispatch } from 'react-redux'
-import { useBoolean } from '../Context/BoolContext'
 import { login } from '../Redux/userSlice'
 
 function SignUp() {
@@ -17,15 +16,14 @@ function SignUp() {
   const navigate = useNavigate()
 
     const signUp = async (e) => {
-      e.preventDefault();
+      e.preventDefault()
       try {
           const { user } = await createUserWithEmailAndPassword(auth, email, password)
     
           await updateProfile(user, {
               displayName: username,
               photoURL: avatar
-          });
-            console.log(user.photoURL)
+          })
           if (user.displayName && user.email) {
           setAvatar(user.photoURL)
               dispatch(login({
@@ -44,7 +42,6 @@ function SignUp() {
           try{
             const {user} = await signInWithPopup(auth, provider)
               
-            
             dispatch(login(
              { name: user.displayName,
               imgurl: user.photoURL,

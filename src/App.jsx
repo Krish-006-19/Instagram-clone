@@ -11,12 +11,12 @@ function App() {
   const user = useSelector(state => state.user.user)
   const dispatch = useDispatch()
   useEffect(()=>{
-    onAuthStateChanged(auth,(user)=>{
-      if(user)
+    onAuthStateChanged(auth,(userst)=>{
+      if(userst)
         dispatch(login({
-          name: user.displayName,
-          imgurl: user.photoURL,
-          email: user.email
+          name: userst.displayName,
+          imgurl: userst.photoURL,
+          email: userst.email
         }))
       else{
         dispatch(logout())
