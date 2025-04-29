@@ -48,9 +48,10 @@ function Feed() {
       return () => unsub()
     }, [])
 
-    const deletePost = async (postId) => {
+    const deletePost = async (postId,emaildata) => {
       setIndex(-1)
-      await deleteDoc(doc(db,'posts',postId))
+      if (user.email === emaildata) 
+        await deleteDoc(doc(db, 'posts', postId))
     }
 
     const like = async( postId ) => {
@@ -72,6 +73,7 @@ function Feed() {
         await addDoc(collection(db, 'posts'), {
           name: user.name,
           message: input,
+          email: user.email,
           likes: 0,
           imgURL: selectedImage,
           avatar: user.imgurl ,
@@ -127,8 +129,8 @@ function Feed() {
         </div>
         <div className='flex items-center'>
           <button
-            className="text-red-600 text-xs hover:cursor-pointer"
-            onClick={() => deletePost(post.id)}
+            className={`text-red-600 text-xs hover:cursor-pointer ${user.email === post.data.email?'hover:cursor-pointer':'hidden'}`}
+            onClick={() => deletePost(post.id,post.data.email)}
           >Delete</button>
         </div>
       </div>

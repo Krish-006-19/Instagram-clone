@@ -49,7 +49,7 @@ function SignUp() {
              { name: user.displayName,
               imgurl: user.photoURL,
               email: user.email,
-              photoURL: user.photoURL}
+            }
             ))
             setAvatar(user.photoURL)
             navigate('/Insta-clone')
