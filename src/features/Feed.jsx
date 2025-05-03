@@ -80,7 +80,7 @@ function Feed() {
           email: user.email,
           likes: 0,
           imgURL: selectedImage,
-          vidURL: selectedVid||'',
+          vidURL: selectedVid,
           avatar: user.imgurl ,
           timestamp: serverTimestamp()
         })
@@ -140,7 +140,7 @@ function Feed() {
       </div>
 
       <div className="mt-2 mb-2 w-full flex justify-center">
-        {post.data.vidURL === null?
+        {post.data.imgURL?
           <img src={post.data.imgURL} className="w-[468px]" />
           :<video controls className="w-[468px]">
           <source src={post.data.vidURL} type="video/mp4" />
