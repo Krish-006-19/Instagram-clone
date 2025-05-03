@@ -29,7 +29,9 @@ function SideBar() {
     const file = e.target.files[0]
     if (file) {
       const uploadResponse = await imagekit.upload({file,fileName:file.name})
+      if(file.type.startsWith('image/'))
       setSelectedImage(uploadResponse.url)
+      if(file.type.startsWith('video/'))
       setSelectedVid(uploadResponse.url)
     }
   }
