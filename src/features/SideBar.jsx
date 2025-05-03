@@ -22,14 +22,15 @@ const imagekit = new ImageKit({
 
 function SideBar() {
   const fileInputRef = useRef(null)
-  const { setSelectedImage } = useBoolean()
-  const handleFileUpload = () => fileInputRef.current.click() 
+  const { setSelectedImage, setSelectedVid } = useBoolean()
+  const handleFileUpload =()=> fileInputRef.current.click() 
 
   const onFileChange = async(e) => {
     const file = e.target.files[0]
     if (file) {
       const uploadResponse = await imagekit.upload({file,fileName:file.name})
       setSelectedImage(uploadResponse.url)
+      setSelectedVid(uploadResponse.url)
     }
   }
 
@@ -51,7 +52,7 @@ function SideBar() {
 
         <input
           type="file"
-          accept="image/*"
+           accept="image/*,video/*"
           style={{ display: 'none' }}
           ref={fileInputRef}
           onChange={onFileChange}

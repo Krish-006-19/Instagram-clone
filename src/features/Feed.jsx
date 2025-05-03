@@ -20,7 +20,7 @@ function Feed() {
   const [likes, setLikes] = useState(0)
   const [input, setInput] = useState('')
 
-    const { setSelectedImage, selectedImage } = useBoolean()
+    const { setSelectedImage, selectedImage, selectedVid, setSelectedVid } = useBoolean()
     const user = useSelector(state=>state.user.user)
 
     useEffect(() => {
@@ -80,11 +80,13 @@ function Feed() {
           email: user.email,
           likes: 0,
           imgURL: selectedImage,
+          vidURL: selectedVid||'',
           avatar: user.imgurl ,
           timestamp: serverTimestamp()
         })
         setInput('')
         setSelectedImage(null)
+        setSelectedVid(null)
         setLikes(0) 
       } catch (err) {
         throw err
@@ -93,6 +95,7 @@ function Feed() {
     
     const undo =()=> {
       setSelectedImage(null)
+      setSelectedVid(null)
       setInput('')
     }
 
@@ -112,8 +115,6 @@ function Feed() {
         throw err
       }
     }
-
-
 
   return (
     <>
@@ -139,7 +140,13 @@ function Feed() {
       </div>
 
       <div className="mt-2 mb-2 w-full flex justify-center">
-        <img src={post.data.imgURL} className="w-[468px]" />
+        {!post.data.vidURL?
+          <img src={post.data.imgURL} className="w-[468px]" />
+          :<video controls className="w-[468px]">
+          <source src={post.data.vidURL} type="video/mp4" />
+          Your browser does not support the video tag.
+          </video>
+          }
       </div>
 
       <div className="flex justify-between hover:cursor-pointer">
@@ -212,17 +219,21 @@ function Feed() {
   </div>
 </div>
 
-{selectedImage && (
+{(selectedImage||selectedVid) && (
   <div className="fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2
      bg-white shadow-2xl rounded-xl w-[850px] max-w-[95%] flex 
      overflow-hidden z-50 border border-gray-300">
     
     <div className="w-1/2 bg-black">
-      <img
+      {selectedVid?
+      <video controls className="object-cover w-full h-full max-h-[500px]">
+      <source src={selectedVid} type="video/mp4" />
+      Your browser does not support the video tag.
+      </video>
+      :<img
         src={selectedImage}
-        alt="preview"
         className="object-cover w-full h-full max-h-[500px]"
-      />
+      />}
     </div>
 
     <div className="w-1/2 p-5 flex flex-col justify-between">
