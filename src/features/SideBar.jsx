@@ -41,8 +41,6 @@ function SideBar() {
         <div className="flex flex-col gap-4">
           <SideBarfeats Icon={HomeIcon} func="Home" />
           <SideBarfeats Icon={AddBoxIcon} func="Post" onClick={handleFileUpload} />
-          <SideBarfeats Icon={SearchIcon} func="Search" />
-          <SideBarfeats Icon={ExploreIcon} func="Explore" />
           <SideBarfeats Icon={MovieIcon} func="Reels" />
           <SideBarfeats Icon={MessageIcon} func="Messages" />
           <SideBarfeats Icon={FavoriteBorderIcon} func="Notifications" />

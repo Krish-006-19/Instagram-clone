@@ -140,9 +140,11 @@ function Feed() {
       </div>
 
       <div className="mt-2 mb-2 w-full flex justify-center">
-        {!post.data.vidURL?
+        {
+          !post.data.vidURL?
           <img src={post.data.imgURL} className="w-[468px]" />
-          :<video controls className="w-[468px]">
+          :
+          <video controls className="w-[468px]">
           <source src={post.data.vidURL} type="video/mp4" />
           Your browser does not support the video tag.
           </video>
