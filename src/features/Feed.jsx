@@ -259,7 +259,7 @@ function Feed() {
         <button
           type="submit"
           onMouseDown={postBtn}
-          onClick={undo || ''}
+          onClick={undo}
           className="mt-4 bg-purple-500 hover:bg-purple-600 text-white text-sm 
           w-full font-semibold py-2 rounded-lg">
           Post
