@@ -19,3 +19,16 @@ A simple yet powerful Instagram clone that allows users to post images and video
 - **Frontend**: REACTJs, Tailwindcss, Redux
 - **Database**: FIRESTORE
 - **Authentication**: FIREBASE Auth
+
+
+
+
+## 🧩 Demo & Preview
+Live demo is available on this website
+https://insta-clone-006.netlify.app/Insta-clone
+
+<img width="1416" height="740" alt="image" src="https://github.com/user-attachments/assets/7721c09c-a8e7-4668-a1dd-724a168c67d8" />
+
+
+
+---
