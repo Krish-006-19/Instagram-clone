@@ -4,13 +4,13 @@ import { GithubAuthProvider } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCnXxbbWjgLcNWCHcts6qv8xVI1_sGPMcQ",
-  authDomain: "instagram-clone-b12e3.firebaseapp.com",
-  projectId: "instagram-clone-b12e3",
-  storageBucket: "instagram-clone-b12e3.appspot.com",
-  messagingSenderId: "64030569572",
-  appId: "1:64030569572:web:31f7e97316c2d12a865b71"
-}
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
+};
 
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
